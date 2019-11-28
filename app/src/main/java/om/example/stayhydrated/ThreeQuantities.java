@@ -27,10 +27,6 @@ public class ThreeQuantities {
     public ThreeQuantities() {
     }
 
-    public ThreeQuantities(String _quantity, String timeStamp) {
-        this._quantity = _quantity;
-        TimeStamp = timeStamp;
-    }
 
     public ThreeQuantities(int id, String _quantity, String timeStamp,String regularDate) {
         this.id = id;
@@ -39,10 +35,7 @@ public class ThreeQuantities {
         RegularDate=regularDate;
     }
 
-    public ThreeQuantities(int id, String _quantity) {
-        this.id = id;
-        this._quantity = _quantity;
-    }
+
 
     public int getId() {
         return id;
