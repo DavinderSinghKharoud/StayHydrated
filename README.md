@@ -1,5 +1,5 @@
 # StayHydrated
-Test-driven development (TDD)
+>Test-driven development (TDD)
 * ## Introducation
 Stay Hydrated is a single-view app which allows users to keep track of their daily
 water consumption and encourages them to drink the 2500mL recommended
