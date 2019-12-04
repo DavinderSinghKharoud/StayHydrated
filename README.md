@@ -5,7 +5,7 @@ Stay Hydrated is a single-view app which allows users to keep track of their dai
 water consumption and encourages them to drink the 2500mL recommended
 intake.
 * ## Tools And Libraries Used:
-1. MySQL Database
+1. SQLite Database
 2. jUnit And Espresso Library
 3. ListView
 4. Custom Adapter
