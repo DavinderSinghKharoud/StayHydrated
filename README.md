@@ -13,7 +13,7 @@ and more.
 
 * ## Application Functions
 >The app consists of three buttons which each represent a certain amount,
-respectively 30mL, 200mL and 350mL, and are represented by corresponding
+respectively 30mL, 200mL and 350mL, are represented by corresponding
 symbols, a droplet, a glass and a bottle.
 Whenever the user clicks one of the buttons, his intake is added to the history
 list and the progress bar at the bottom of the screen fills in accordingly.  
