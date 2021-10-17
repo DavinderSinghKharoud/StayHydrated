@@ -48,58 +48,15 @@ public class IntegrationTests {
     public ActivityTestRule<HomeActivity> activity = new ActivityTestRule<>(HomeActivity.class);
 
 
-//Helper Function
-
-    public void AssertDataInHistory(int position, int historyDataType, String Text) {
-        onData(anything()) // Select all elements in a list
-                .inAdapterView(withId(R.id.historyListView)) // Only in the historyListViewAdapter
-                .atPosition(position)  // Select the element at specific position
-                .onChildView(withId(historyDataType))  // Select the type of view  in the element
-                .check(matches(withText(Text)));  // Assertion
+    @BeforeClass
+    public static void beforeClass() {
+        InstrumentationRegistry.getTargetContext().deleteDatabase(DatabaseHelper.Database_Name);
     }
 
-
-    public void progressBarValue(int value) {
-        ProgressBar progressBar = activity.getActivity().findViewById(R.id.progressBar);
-        assertThat(progressBar.getProgress(), equalTo(value));
-    }
-
-    public void ButtonClick(int id) {
-        onView(withId(id)).perform(click());
-
-    }
-
-    public void doubleClickAtPosition(int position) {
-        onData(anything())
-                .inAdapterView(withId(R.id.historyListView))
-                .atPosition(position)
-                .perform(doubleClick());
-    }
-
-
-    public void assertListLength(int length) {
-        ListView listView = activity.getActivity().findViewById(R.id.historyListView);
-        assertThat(listView.getCount(), equalTo(length));
-    }
-
-    public void timestampTest() {
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm - dd/MM");
-        String date = df.format(new Date());
-
-        onData(anything())
-                .inAdapterView(withId(R.id.historyListView))
-                .atPosition(0)
-                .onChildView(withId(R.id.historyDataTimestamp))
-                .check(matches(withText(date)));
-    }
-
-
-    public void testImage(int position, int id) {
-        onData(anything())
-                .inAdapterView(withId(R.id.historyListView))
-                .atPosition(position)
-                .onChildView(withId(R.id.historyDataImage))
-                .check(matches(withTagValue(Matchers.<Object>equalTo(id))));
+    @After
+    public void afterClass(){
+        DatabaseHelper myDB=activity.getActivity().myDB;
+        myDB.deleteTable();
     }
 
     //Real Tests
@@ -218,17 +175,6 @@ public class IntegrationTests {
         progressBarValue(2500);
     }
 
-
-    @BeforeClass
-    public static void beforeClass() {
-        InstrumentationRegistry.getTargetContext().deleteDatabase(DatabaseHelper.Database_Name);
-    }
-
-    @After
-    public void afterClass(){
-        DatabaseHelper myDB=activity.getActivity().myDB;
-        myDB.deleteTable();
-    }
     //Feature 4
     //Scenario 1
     @Test
@@ -295,4 +241,57 @@ public class IntegrationTests {
     }
 
 
+    //Helper Function
+
+    public void AssertDataInHistory(int position, int historyDataType, String Text) {
+        onData(anything()) // Select all elements in a list
+                .inAdapterView(withId(R.id.historyListView)) // Only in the historyListViewAdapter
+                .atPosition(position)  // Select the element at specific position
+                .onChildView(withId(historyDataType))  // Select the type of view  in the element
+                .check(matches(withText(Text)));  // Assertion
+    }
+
+
+    public void progressBarValue(int value) {
+        ProgressBar progressBar = activity.getActivity().findViewById(R.id.progressBar);
+        assertThat(progressBar.getProgress(), equalTo(value));
+    }
+
+    public void ButtonClick(int id) {
+        onView(withId(id)).perform(click());
+
+    }
+
+    public void doubleClickAtPosition(int position) {
+        onData(anything())
+                .inAdapterView(withId(R.id.historyListView))
+                .atPosition(position)
+                .perform(doubleClick());
+    }
+
+
+    public void assertListLength(int length) {
+        ListView listView = activity.getActivity().findViewById(R.id.historyListView);
+        assertThat(listView.getCount(), equalTo(length));
+    }
+
+    public void timestampTest() {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm - dd/MM");
+        String date = df.format(new Date());
+
+        onData(anything())
+                .inAdapterView(withId(R.id.historyListView))
+                .atPosition(0)
+                .onChildView(withId(R.id.historyDataTimestamp))
+                .check(matches(withText(date)));
+    }
+
+
+    public void testImage(int position, int id) {
+        onData(anything())
+                .inAdapterView(withId(R.id.historyListView))
+                .atPosition(position)
+                .onChildView(withId(R.id.historyDataImage))
+                .check(matches(withTagValue(Matchers.<Object>equalTo(id))));
+    }
 }
